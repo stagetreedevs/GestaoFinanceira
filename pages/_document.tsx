@@ -1,7 +1,7 @@
 import { Head, Html, Main, NextScript, DocumentContext } from "next/document";
 
-class MyDocument extends Document {
-    render() {
+const Document = () => {
+    
         return (
             <Html>
                 <Head>
@@ -12,8 +12,8 @@ class MyDocument extends Document {
                 </body>
             </Html>
         )
-    }
+    
 
 }
 
-export default MyDocument
+export default Document
