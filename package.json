@@ -1,0 +1,33 @@
+{
+  "name": "balanco-financeiro",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@material-ui/core": "^4.12.4",
+    "@mui/material": "^5.10.3",
+    "chart.js": "^3.9.1",
+    "firebase": "^9.9.3",
+    "next": "12.2.5",
+    "primeicons": "^5.0.0",
+    "primereact": "^8.5.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "sass": "^1.54.5"
+  },
+  "devDependencies": {
+    "@types/node": "18.7.13",
+    "@types/react": "18.0.17",
+    "@types/react-dom": "18.0.6",
+    "eslint": "8.22.0",
+    "eslint-config-next": "12.2.5",
+    "typescript": "4.7.4"
+  }
+}

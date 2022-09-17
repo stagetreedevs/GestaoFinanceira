@@ -1,0 +1,69 @@
+.DashBoard {
+  margin-left: 1rem;
+  padding-top: 1.5vh;
+  padding-left: 1.25rem;
+  display: flex;
+  gap: 1rem;
+  .head {
+    border-radius: 1rem;
+    text-align: start;
+    height: 21vh;
+    width: 65vw;
+    background: #310f61;
+    padding: 1px 0 0 1.5rem;
+  }
+  .info {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    line-height: .5rem;
+    
+    span {
+      color: #f06e7c;
+    }
+  }
+  .Lucro{
+    margin-top: 1rem;
+    padding: .1rem 0 .5rem 1rem;
+    border-radius: 1rem;
+    background-color:#ffffff;
+    color: #000000;
+  }
+  .Clientes{
+    width: 37.5vw;
+    margin-top: 1rem;
+    padding: .1rem 0 .5rem 1rem;
+    border-radius: 1rem;
+    background-color:#ffffff;
+    color: #000000;
+  }
+  .Despesas{
+    width: 25vw;
+    margin-top: 1rem;
+    padding: .1rem 0 .5rem 1rem;
+    border-radius: 1rem;
+    background-color:#ffffff;
+    color: #000000;
+  
+  }
+  .g2{
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.dialog-demo .p-button {
+  margin: 0 .5rem 0 0;
+  min-width: 10rem;
+}
+
+.dialog-demo p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.dialog-demo .p-dialog .p-button {
+  min-width: 6rem;
+}
+.extrato{
+  width: 15vw;
+}
