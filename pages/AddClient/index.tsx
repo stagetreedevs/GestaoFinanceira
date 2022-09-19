@@ -8,6 +8,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import DashBoard from '../DashBoard';
+import { InputMask } from 'primereact/inputMask';
 import styles from './style.module.scss'
 import { TransitionProps } from '@mui/material/transitions';
 
@@ -52,64 +53,65 @@ function AddClient(props: any, onClose = () => { }) {
   };
   return (
     <>
-      
-        <Dialog
-          open={open}
-          onClose={() => handleClose(false, event)}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-          fullWidth={true}
-        >
-          <DialogTitle id="alert-dialog-title" gutterBottom>
-            {"Formulario de cliente"}
-          </DialogTitle>
-          <DialogContent>
 
-            <FormGroup>
-              <Grid container spacing={3}>
-                <Grid item xs={12} md={6}>
-                  <Input placeholder='Nome'
-                    onChange={(e) => setForm({
-                      ...form,
-                      nome: e.target.value
-                    })} />
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <Input placeholder='Numero'
-                    type='number'
-                    onChange={(e) => setForm({
-                      ...form,
-                      numero: e.target.value
-                    })} />
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <Input placeholder='Valor'
-                    onChange={(e) => setForm({
-                      ...form,
-                      valor: e.target.value
-                    })} />
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <Input placeholder='data'
-                    type='date'
-                    onChange={(e) => setForm({
-                      ...form,
-                      data: e.target.value
-                    })} />
-                </Grid>
+      <Dialog
+        open={open}
+        onClose={() => handleClose(false, event)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        fullWidth={true}
+      >
+        <DialogTitle id="alert-dialog-title" gutterBottom>
+          {"Formulario de cliente"}
+        </DialogTitle>
+        <DialogContent>
+
+          <FormGroup>
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={6}>
+                <Input
+                  onChange={(e: any) => setForm({
+                    ...form,
+                    nome: e.target.value
+                  })} />
               </Grid>
-            </FormGroup>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={() => {
-              handleClose(false, event)
-            }
-            }>
-              Disagree
-            </Button>
-            <Button onClick={() => handleClose(true, event)}>Agree</Button>
-          </DialogActions>
-        </Dialog>
+              <Grid item xs={12} md={6}>
+                <Input placeholder='Numero'
+                  type='number'
+                  onChange={(e) => setForm({
+                    ...form,
+                    numero: e.target.value
+                  })} />
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Input placeholder='Valor'
+                  onChange={(e) => setForm({
+                    ...form,
+                    valor: e.target.value
+                  })} />
+
+
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <InputMask placeholder="Dia/Mês/Ano"  mask="99/99/9999" value={form.data} 
+                  onChange={(e: any) => setForm({
+                    ...form,
+                    data: e.target.value
+                  })} />
+              </Grid>
+            </Grid>
+          </FormGroup>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => {
+            handleClose(false, event)
+          }
+          }>
+            Disagree
+          </Button>
+          <Button onClick={() => handleClose(true, event)}>Agree</Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }
