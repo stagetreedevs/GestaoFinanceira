@@ -13,7 +13,7 @@ const DashBoard = (props: any) => {
         <div className={styles.DashBoard}>
             <div className={styles.left}>
                 <div className={styles.head}>
-                    <h1>DashBoard Financeiro | Análise de receita</h1>
+                    <h2>DashBoard Financeiro | Análise de receita</h2>
                     <div className={styles.info}>
                         <div>
                             <p>R$ {valor}</p>
@@ -30,6 +30,7 @@ const DashBoard = (props: any) => {
                         <div>
                             <p>R$ {valor}</p>
                             <span>Despesas</span>
+
                         </div>
                     </div>
                 </div>

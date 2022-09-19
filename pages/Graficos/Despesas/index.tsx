@@ -8,12 +8,12 @@ const Despesas = () => {
             {
                 data: [300, 50, ],
                 backgroundColor: [
-                    "#f06e7c",
-                    "#310f61"
+                    "#23F782",
+                    "#222A44"
                 ],
                 hoverBackgroundColor: [
-                    "#ff3c4f",
-                    "#310f61"
+                    "#01D789",
+                    "#222A35",
                 ]
             }]
     });
@@ -30,7 +30,7 @@ const Despesas = () => {
 
     return (
         <div>
-            <Chart type="doughnut" data={chartData} options={lightOptions} style={{ position: 'relative', width: '12.5vw' }} />
+            <Chart type="doughnut" data={chartData} options={lightOptions} style={{ width: '10vw'}} />
         </div>
     )
 }

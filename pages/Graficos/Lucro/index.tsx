@@ -8,12 +8,12 @@ const GraficoLucro = () => {
         datasets: [
             {
                 label: 'Lucros',
-                backgroundColor: '#310f61',
+                backgroundColor: '#222A44',
                 data: [65, 59, 80, 81, 56, 55, 40, 60, 60, 60, 60, 60]
             },
             {
                 label: 'Gastos',
-                backgroundColor: '#f06e7c',
+                backgroundColor: '#23F782',
                 data: [28, 48, 40, 19, 86, 27, 90, 40, 40, 40, 40, 40]
             }
         ]

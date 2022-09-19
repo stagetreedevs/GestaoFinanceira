@@ -12,11 +12,18 @@ a {
   text-decoration: none;
 }
 
+strong{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 .css-tlc64q-MuiPaper-root-MuiDialog-paper{
-  height: 40vh !important;
+  height: 45vh !important;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,6 +32,7 @@ a {
   }
   body {
     color: white;
-    background: #310f61;
+    background: #222A44;
+    overflow: hidden;
   }
 }

@@ -6,7 +6,8 @@ const Grafico = () => {
     const [basicData] = useState({
         labels: ['#1', '#2', '#3', '#4', '#5'],
         datasets: [{
-            backgroundColor: '#310f61',
+            label: '',
+            backgroundColor: '#222A44',
             data: [65, 59, 80, 81, 56]
         }]
     });
@@ -15,7 +16,7 @@ const Grafico = () => {
         let basicOptions = {
             indexAxis: 'y',
             maintainAspectRatio: false,
-            aspectRatio: 1.40,
+            aspectRatio: 1.5,
             scales: {
                 x: {
                     ticks: {
