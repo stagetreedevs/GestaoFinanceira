@@ -8,9 +8,11 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import DashBoard from '../DashBoard';
-import { InputMask } from 'primereact/inputmask';
+import { InputNumber } from 'primereact/inputnumber';
+import { InputMask } from 'primereact/inputmask'
 import styles from './style.module.scss'
 import { TransitionProps } from '@mui/material/transitions';
+import { InputText } from 'primereact/inputtext';
 
 
 
@@ -69,23 +71,23 @@ function AddClient(props: any, onClose = () => { }) {
           <FormGroup>
             <Grid container spacing={3}>
               <Grid item xs={12} md={6}>
-                <Input
+                <InputText placeholder="Nome" 
                   onChange={(e: any) => setForm({
                     ...form,
                     nome: e.target.value
                   })} />
               </Grid>
               <Grid item xs={12} md={6}>
-                <Input placeholder='Numero'
-                  type='number'
+                <InputMask placeholder="Numero" 
+                mask="(85) 99999-9999"
                   onChange={(e) => setForm({
                     ...form,
                     numero: e.target.value
                   })} />
               </Grid>
               <Grid item xs={12} md={6}>
-                <Input placeholder='Valor'
-                  onChange={(e) => setForm({
+              <InputNumber placeholder="Valor" 
+                  onChange={(e: any) => setForm({
                     ...form,
                     valor: e.target.value
                   })} />
@@ -93,7 +95,8 @@ function AddClient(props: any, onClose = () => { }) {
 
               </Grid>
               <Grid item xs={12} md={6}>
-                <InputMask placeholder="Dia/Mês/Ano"  mask="99/99/9999" value={form.data} 
+                <InputMask placeholder="Dia/Mês/Ano" 
+                mask="99/99/9999"
                   onChange={(e: any) => setForm({
                     ...form,
                     data: e.target.value
