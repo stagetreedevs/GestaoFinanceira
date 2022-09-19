@@ -8,7 +8,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import DashBoard from '../DashBoard';
-import { InputMask } from 'primereact/inputMask';
+import { InputMask } from 'primereact/inputmask';
 import styles from './style.module.scss'
 import { TransitionProps } from '@mui/material/transitions';
 
