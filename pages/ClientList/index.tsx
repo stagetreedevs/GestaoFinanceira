@@ -8,24 +8,30 @@ const List = () => {
     const [list, setList] = useState<any>([])
     useEffect(() => {
         if (text) {
+
             async () => setList(
 
                 (await DataService.getAll()).docs.map(p => p.data())
 
-                )
-                
-                setList(list.filter( (p:any) => p.nome.includes(text) ))
-        }else{
+            )
+            console.log(list)
+
+
+            setList(list.filter((p: any) => p.nome.includes(text)))
+        } else {
             const getClients = async () => {
                 setList(
 
                     (await DataService.getAll()).docs.map(response => response.data())
 
-                    )
-                }
+                )
                 
-                getClients()
+
             }
+            
+
+            getClients()
+        }
     }, [text])
     return (
         < >

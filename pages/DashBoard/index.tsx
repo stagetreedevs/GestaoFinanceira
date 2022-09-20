@@ -2,13 +2,30 @@ import Lucro from '../Graficos/Lucro';
 import Clientes from '../Graficos/Clientes';
 import styles from './style.module.scss'
 import Despesas from '../Graficos/Despesas';
+import DataService from '../../services/firebase-config'
 import List from '../ClientList';
+import { useEffect, useState } from 'react';
 
 
 const DashBoard = (props: any) => {
 
-    let valor = 2000.00
-    let YoY = 33
+    const [valor, setValor] = useState<any>([0])
+    let YoY 
+    useEffect(() => {
+        const getClients = async () => {
+               const data = (await DataService.getAll()).docs.map(response => response.data().valor).reduce(
+                (soma:number, i:number) => {
+                    return soma + i
+                }, 0
+            )
+
+            
+                setValor(data)
+
+        }
+        getClients()
+    }, [])
+    
     return (
         <div className={styles.DashBoard}>
             <div className={styles.left}>
@@ -22,10 +39,6 @@ const DashBoard = (props: any) => {
                         <div>
                             <p>- {YoY}%</p>
                             <span>YoY%</span>
-                        </div>
-                        <div>
-                            <p>R$ {valor}</p>
-                            <span>MargemContribuição</span>
                         </div>
                         <div>
                             <p>R$ {valor}</p>
