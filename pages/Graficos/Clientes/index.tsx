@@ -59,7 +59,7 @@ const Grafico = () => {
 
     return (
         <div style={{}}>
-            <Chart type="bar" data={basicData} options={basicOptions} style={{height: '17.5vh'}} />
+            <Chart type="bar" data={basicData} options={basicOptions} style={{height: '20vh'}} />
         </div>
     )
 }

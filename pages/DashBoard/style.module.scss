@@ -8,6 +8,7 @@
   height: 90%;
   .left {
     width: 70%;
+    margin-bottom: 1rem;
   }
   .head {
     display: flex;
@@ -45,6 +46,7 @@
   }
   .Despesas {
     display: flex;
+    gap: .25rem;
     width: 37.5%;
     margin-top: 1rem;
     padding: 1rem;
@@ -116,13 +118,14 @@
     }
     .Despesas {
       display: grid;
-      width: 37.5%;
+      gap: .25rem;
+      width: 35%;
+      height: auto;
       margin-top: 1rem;
       padding: 1rem;
       border-radius: 1rem;
       background-color: #ffffff;
       color: #000000;
-      height: auto;
     }
     .g2 {
       display: flex;

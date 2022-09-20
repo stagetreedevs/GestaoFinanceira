@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from '../../../styles/Home.module.css'
 import { Chart } from 'primereact/chart';
 
 const Despesas = () => {
@@ -29,9 +30,7 @@ const Despesas = () => {
     });
 
     return (
-        <div>
-            <Chart type="doughnut" data={chartData} options={lightOptions} style={{ width: '10vw'}} />
-        </div>
+            <Chart type="doughnut" data={chartData} options={lightOptions} className={styles.chart} />
     )
 }
 

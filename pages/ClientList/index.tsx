@@ -36,9 +36,9 @@ const List = () => {
                 <table>
                     <thead>
                         <tr>
-                            <th>Nome</th>
-                            <th>Valor</th>
-                            <th>Data</th>
+                            <td>Nome</td>
+                            <td>Valor</td>
+                            <td>Data</td>
                         </tr>
                     </thead>
                     {list.map((client: any, key: any) => {
