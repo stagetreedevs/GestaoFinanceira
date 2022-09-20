@@ -67,11 +67,11 @@
   .DashBoard {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 2.5%;
     height: auto;
     width: auto;
+    font-size: small;
+    gap: 5%;
     .left {
       margin-top: 2.5vh;
       align-items: center;
@@ -86,11 +86,13 @@
       height: 25%;
       width: 100%;
       background: #222a44;
-      padding: 1rem;
+      padding: 0.5rem;
+      gap: 0.25rem;
     }
     .info {
       display: grid;
       grid-template-columns: auto auto auto auto;
+      text-align: center;
 
       span {
         color: #01d789;
