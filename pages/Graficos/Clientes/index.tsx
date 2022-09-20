@@ -4,19 +4,19 @@ import { Chart } from 'primereact/chart';
 const Grafico = () => {
 
     const [basicData] = useState({
-        labels: ['#1', '#2', '#3', '#4', '#5'],
+        labels: ['#1', '#2', '#3'],
         datasets: [{
             label: '',
             backgroundColor: '#222A44',
-            data: [65, 59, 80, 81, 56]
+            data: [65, 59, 80]
         }]
     });
 
     const getLightTheme = () => {
         let basicOptions = {
             indexAxis: 'y',
+            reponsive: false,
             maintainAspectRatio: false,
-            aspectRatio: 1.5,
             scales: {
                 x: {
                     ticks: {
@@ -58,8 +58,8 @@ const Grafico = () => {
     const { basicOptions } = getLightTheme();
 
     return (
-        <div>
-            <Chart type="bar" data={basicData} options={basicOptions} />
+        <div style={{}}>
+            <Chart type="bar" data={basicData} options={basicOptions} style={{height: '17.5vh'}} />
         </div>
     )
 }

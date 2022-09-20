@@ -17,3 +17,23 @@
         padding-left: 5%;
     }
 }
+@media screen and (max-width: 720px){
+    .list{
+        background-color: #ffffff;
+        color: black;
+        border-radius: 1rem;
+        width: 95vw;
+        height: auto;
+        padding: 1rem;
+        table{
+            width: 100%;
+            td{
+                padding: .5rem;
+            }
+        }
+        .search{
+            width: 100%;
+            padding-left: 5%;
+        }
+    }
+}

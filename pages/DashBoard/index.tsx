@@ -40,7 +40,7 @@ const DashBoard = (props: any) => {
                 </div>
                 <div className={styles.g2}>
                     <div className={styles.Clientes}>
-                        <h3>Top 5 Clientes ao Longo do Tempo</h3>
+                        <h3>Top 3 Clientes ao Longo do Tempo</h3>
                         <Clientes />
                     </div>
                     <div className={styles.Despesas}>
