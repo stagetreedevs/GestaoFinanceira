@@ -34,7 +34,7 @@ function AddClient(props: any) {
     console.log(e)
     if (close) {
       try {
-        DataService.add(form);
+        DataService.add(form, "clientes");
         setForm({
           nome: '',
           numero: '',

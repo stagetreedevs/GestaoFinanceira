@@ -2,6 +2,7 @@ import Lucro from '../Graficos/Lucro';
 import Clientes from '../Graficos/Clientes';
 import styles from './style.module.scss'
 import Despesas from '../Graficos/Despesas';
+import FinaceService from '../../services/firebase-config'
 import DataService from '../../services/firebase-config'
 import List from '../ClientList';
 import { useEffect, useState } from 'react';
@@ -9,23 +10,35 @@ import { useEffect, useState } from 'react';
 
 const DashBoard = (props: any) => {
 
-    const [valor, setValor] = useState<any>([0])
-    let YoY 
+    const [despesas, setDespesas] = useState<any>([0])
+    const [receita, setReceita] = useState<any>([0])
+    const [saldo, setSaldo] = useState<any>([0])
     useEffect(() => {
-        const getClients = async () => {
-               const data = (await DataService.getAll()).docs.map(response => response.data().valor).reduce(
-                (soma:number, i:number) => {
+        async function getClients() {
+            const data = (await DataService.getAll("clientes")).docs.map(response => response.data().valor).reduce(
+                (soma: number, i: number) => {
                     return soma + i
                 }, 0
             )
+            const saldo = (await (DataService.getAll("receita"))).docs.map(res => res.data().saldo)
 
-            
-                setValor(data)
+            await setSaldo(saldo)
 
+            await setDespesas(data)
+
+            await setReceita((await (DataService.getAll("receita"))).docs.map(res => res.data().receita))
+                console.log((await DataService.getAll("clientes")).docs.map(response => response.id))
         }
+
+
         getClients()
+
     }, [])
-    
+    useEffect(() => {
+        const newSaldo: number = saldo[0] + (receita - despesas)
+        setSaldo(newSaldo)
+    }, [receita])
+
     return (
         <div className={styles.DashBoard}>
             <div className={styles.left}>
@@ -33,16 +46,17 @@ const DashBoard = (props: any) => {
                     <h2>DashBoard Financeiro | Análise de receita</h2>
                     <div className={styles.info}>
                         <div>
-                            <p>R$ {valor}</p>
+                            <p>R$ {receita}</p>
                             <span>Receita</span>
                         </div>
                         <div>
-                            <p>- {YoY}%</p>
-                            <span>YoY%</span>
+                            <p>R$ {despesas}</p>
+                            <span>Despesas</span>
+
                         </div>
                         <div>
-                            <p>R$ {valor}</p>
-                            <span>Despesas</span>
+                            <p>R$ {saldo}</p>
+                            <span>Saldo</span>
 
                         </div>
                     </div>

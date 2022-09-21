@@ -11,7 +11,7 @@ const List = () => {
 
             async () => setList(
 
-                (await DataService.getAll()).docs.map(p => p.data())
+                (await DataService.getAll("clientes")).docs.map(p => p.data())
 
             )
             console.log(list)
@@ -22,13 +22,13 @@ const List = () => {
             const getClients = async () => {
                 setList(
 
-                    (await DataService.getAll()).docs.map(response => response.data())
+                    (await DataService.getAll("clientes")).docs.map(response => response.data())
 
                 )
-                
+
 
             }
-            
+
 
             getClients()
         }
@@ -42,25 +42,40 @@ const List = () => {
                 <table>
                     <thead>
                         <tr>
-                            <td>Nome</td>
-                            <td>Valor</td>
-                            <td>Data</td>
+                            <td>
+                                <strong>
+                                Nome
+                                </strong>
+                                <hr />
+                            </td>
+                            <td>
+                                <strong>
+                                Valor
+                                </strong>
+                                <hr />
+                            </td>
+                            <td>
+                                <strong>
+                                Data
+                                </strong>
+                                <hr />
+                            </td>
                         </tr>
                     </thead>
-                    {list.map((client: any, key: any) => {
-                        return (
-                            <tbody key={key}>
-                                <tr>
+                    <tbody>
+                        {list.map((client: any, key: any) => {
+                            return (
+                                <tr key={key}>
 
                                     <td>{client.nome}</td>
                                     <td>{client.valor}</td>
                                     <td>{client.data}</td>
 
                                 </tr>
-                            </tbody>
 
-                        )
-                    })}
+                            )
+                        })}
+                    </tbody>
                 </table>
             </div>
         </>

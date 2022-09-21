@@ -10,26 +10,26 @@ doc,
 } from "firebase/firestore";
 
 class DataService {
-  add = (newClient: any) => {
-    return addDoc(collection(db, "clientes"), newClient);
+  add = (newClient: any, ref:string) => {
+    return addDoc(collection(db, ref), newClient);
   };
 
-  update = (id: string, updatedBook: any) => {
-    const Doc = doc(db, "clientes", id);
-    return updateDoc(Doc, updatedBook);
+  update = (updatedItem: any, ref:string, id: string) => {
+    const Doc = doc(db, ref, id);
+    return updateDoc(Doc, updatedItem);
   };
 
-  delete= (id: string) => {
-    const Doc = doc(db, "clientes", id);
+  delete= (id: string, ref:string) => {
+    const Doc = doc(db, ref, id);
     return deleteDoc(Doc);
   };
 
-  getAll = () => {
-    return getDocs(collection(db, "clientes"));
+  getAll = (ref:string) => {
+    return getDocs(collection(db, ref));
   };
 
-  getData= (id: string) => {
-    const Doc = doc(db, "clientes", id);
+  getData= (id: string, ref:string) => {
+    const Doc = doc(db, ref, id);
     return getDoc(Doc);
   };
 }
