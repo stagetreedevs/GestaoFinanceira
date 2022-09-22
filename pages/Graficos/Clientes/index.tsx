@@ -1,16 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import DataService from '../../../services/firebase-config'
 import { Chart } from 'primereact/chart';
 
 const Grafico = () => {
+    const [data, setData] = useState<any>([])
 
-    const [basicData] = useState({
+    useEffect(() => {
+        async function getData() {
+            const vetor = (await DataService.getAll("clientes")).docs.map(response => response.data().valor)
+            const vetor2 = vetor.filter((p:any)=> p != Math.max.apply(null,vetor))
+            const vetor3 = vetor2.filter((p:any)=> p != Math.max.apply(null,vetor2))
+            setData([Math.max.apply(null,vetor), Math.max.apply(null,vetor2), Math.max.apply(null,vetor3)])
+            
+            console.log(data)
+
+        }
+        getData()
+    }, [])
+    
+
+    let basicData = {
         labels: ['#1', '#2', '#3'],
         datasets: [{
             label: '',
-            backgroundColor: '#222A44',
-            data: [65, 59, 80]
+            backgroundColor: ['#01d789', '#222A44', '#010326'],
+            data: [data[0], data[1], data[2]]
         }]
-    });
+    };
 
     const getLightTheme = () => {
         let basicOptions = {
@@ -58,8 +74,8 @@ const Grafico = () => {
     const { basicOptions } = getLightTheme();
 
     return (
-        <div style={{}}>
-            <Chart type="bar" data={basicData} options={basicOptions} style={{height: '20vh'}} />
+        <div onClick={() => console.log(data)}>
+            <Chart type="bar" data={basicData} options={basicOptions} style={{ height: '20vh' }} />
         </div>
     )
 }

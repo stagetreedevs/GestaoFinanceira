@@ -2,7 +2,6 @@ import Lucro from '../Graficos/Lucro';
 import Clientes from '../Graficos/Clientes';
 import styles from './style.module.scss'
 import Despesas from '../Graficos/Despesas';
-import FinaceService from '../../services/firebase-config'
 import DataService from '../../services/firebase-config'
 import List from '../ClientList';
 import { useEffect, useState } from 'react';

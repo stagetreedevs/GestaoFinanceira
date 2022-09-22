@@ -68,7 +68,7 @@ const List = () => {
                                 <tr key={key}>
 
                                     <td>{client.nome}</td>
-                                    <td>{client.valor}</td>
+                                    <td>R$ {client.valor},00</td>
                                     <td>{client.data}</td>
 
                                 </tr>
