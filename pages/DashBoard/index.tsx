@@ -26,7 +26,6 @@ const DashBoard = (props: any) => {
             await setDespesas(data)
 
             await setReceita((await (DataService.getAll("receita"))).docs.map(res => res.data().receita))
-                console.log((await DataService.getAll("clientes")).docs.map(response => response.id))
         }
 
 

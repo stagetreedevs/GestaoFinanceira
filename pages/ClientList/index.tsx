@@ -39,24 +39,24 @@ const List = () => {
                 <div className={styles.search}>
                     <SearchInput value={text} onChange={(search: string) => setText(search)} />
                 </div>
-                <table>
+                <table className={styles.table}>
                     <thead>
                         <tr>
                             <td>
                                 <strong>
-                                Nome
+                                    Nome
                                 </strong>
                                 <hr />
                             </td>
                             <td>
                                 <strong>
-                                Valor
+                                    Valor
                                 </strong>
                                 <hr />
                             </td>
                             <td>
                                 <strong>
-                                Data
+                                    Data
                                 </strong>
                                 <hr />
                             </td>

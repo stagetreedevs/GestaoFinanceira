@@ -52,9 +52,6 @@ function AddClient(props: any) {
 
   };
 
-  function handleClickOpen() {
-    setOpen(true);
-  };
   return (
     <>
 

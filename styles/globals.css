@@ -33,6 +33,7 @@ strong{
   body {
     color: white;
     background: #222A44;
+    margin: 0;
     padding: 0;
   }
 }

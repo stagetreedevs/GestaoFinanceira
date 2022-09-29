@@ -11,8 +11,6 @@ const Grafico = () => {
             const vetor2 = vetor.filter((p:any)=> p != Math.max.apply(null,vetor))
             const vetor3 = vetor2.filter((p:any)=> p != Math.max.apply(null,vetor2))
             setData([Math.max.apply(null,vetor), Math.max.apply(null,vetor2), Math.max.apply(null,vetor3)])
-            
-            console.log(data)
 
         }
         getData()

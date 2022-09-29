@@ -1,26 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import DataService from '../../../services/firebase-config'
 import { Chart } from 'primereact/chart';
 
 const GraficoLucro = () => {
 
-    const [basicData] = useState({
-        labels: ['Jan', 'Fev', 'Mar', 'Abril', 'Maio', 'Jun', 'Jul','Ago', 'Set', 'Out', 'Nov', 'Dez'],
+    const [data, setData] = useState<any>([])
+
+    useEffect(() => {
+        async function getData() {
+            const vetor = (await DataService.getAll("clientes")).docs.map(response => response.data().valor).reduce(
+                (soma: number, i: number) => {
+                    return soma + i
+                }, 0
+            )
+            const vetor2 = (await DataService.getAll("receita")).docs.map(response => response.data().receita)
+            setData([vetor, vetor2[0]])
+            
+
+            console.log(data[1])
+
+
+        }
+        getData()
+    }, [])
+
+    let basicData ={
+        labels: ['Lucro', 'Despesa',],
         datasets: [
             {
-                label: 'Lucros',
-                backgroundColor: '#222A44',
-                data: [65, 59, 80, 81, 56, 55, 40, 60, 60, 60, 60, 60]
-            },
-            {
-                label: 'Gastos',
-                backgroundColor: '#23F782',
-                data: [28, 48, 40, 19, 86, 27, 90, 40, 40, 40, 40, 40]
+                label: 'Lucros e Despesas',
+                backgroundColor: ['#01d789','#222A44'],
+                data: [data[1], data[0]]
             }
         ]
-    });
+    }
 
     const getLightTheme = () => {
         let basicOptions = {
+            indexAxis: 'y',
             maintainAspectRatio: false,
             aspectRatio: 1.75,
             plugins: {

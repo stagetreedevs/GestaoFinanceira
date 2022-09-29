@@ -33,7 +33,7 @@ const Header = (props: any) => {
                     <Image src={dash} width={35} height={35} />
 
                 </Link>
-                <Link href='/'>
+                <Link href='/Financeiro'>
 
                     <Image src={manage} width={35} height={35} />
 
@@ -69,7 +69,7 @@ const Header = (props: any) => {
                         }}
                         className={styles.button}
                     >
-
+                        
                         <strong>Deletar</strong>
                         <div>
                         <Image src={remove} width={50} height={50} />
