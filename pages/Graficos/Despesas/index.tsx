@@ -1,13 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import DataService from '../../../services/firebase-config'
 import styles from '../../../styles/Home.module.css'
 import { Chart } from 'primereact/chart';
 
 const Despesas = () => {
-    const [chartData] = useState({
+    const [data, setData] = useState<any>([])
+
+    useEffect(() => {
+        async function getData() {
+            const vetor = (await DataService.getAll("clientes")).docs.map(response => response.data().valor).reduce(
+                (soma: number, i: number) => {
+                    return soma + i
+                }, 0
+            )
+                setData(vetor)
+        }
+        getData()
+    }, [])
+    let chartData = {
         labels: ['Operacional', 'Outros'],
         datasets: [
             {
-                data: [300, 50, ],
+                data: [data],
                 backgroundColor: [
                     "#23F782",
                     "#222A44"
@@ -17,7 +31,7 @@ const Despesas = () => {
                     "#222A35",
                 ]
             }]
-    });
+    };
 
     const [lightOptions] = useState({
         plugins: {
