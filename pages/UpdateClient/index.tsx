@@ -16,13 +16,13 @@ import Image from 'next/image';
 
 // import './ToastDemo.css';
 
-function AddClient(props: any) {
+function UpdateClient(props: any) {
   const [open, setOpen] = useState(true);
   const [tel, setTel] = useState(true);
 
   const [form, setForm] = useState({
     nome: '',
-    numero: '',
+    numero: '111111',
     valor: 1,
     data: ''
   });
@@ -51,16 +51,6 @@ function AddClient(props: any) {
 
   };
   useEffect(() => {
-    let ref = async () => {
-      const data = (await DataService.getAll("clientes"))
-      let ref = data.docs.map(p => p.id)
-      ref.map(p => console.log(props.id))
-
-      // if(ref == props.id){
-      //   console.log(data.docs.map(res => res.data()))
-      // }
-    }
-    ref()
     setForm(props.client)
     console.log(props.client)
   }, [])
@@ -96,7 +86,7 @@ function AddClient(props: any) {
               <Grid item xs={12} md={6}>
                 {tel ?
                   <InputMask placeholder="Celular"
-                    value={props.client.numero}
+                    value={form.numero}
                     mask="(85) 99999-9999"
                     onChange={(e) => setForm({
                       ...form,
@@ -104,7 +94,7 @@ function AddClient(props: any) {
                     })} />
                   :
                   <InputMask placeholder="Fixo"
-                    value={props.client.numero}
+                    value={form.numero}
                     mask="9999-9999"
                     onChange={(e) => setForm({
                       ...form,
@@ -143,7 +133,7 @@ function AddClient(props: any) {
               <Grid item xs={12} md={6}>
 
                 <InputMask placeholder="Dia/Mês/Ano"
-                  value={props.client.data}
+                  value={form.data}
                   mask="99/99/9999"
                   onChange={(e: any) => setForm({
                     ...form,
@@ -176,4 +166,4 @@ function AddClient(props: any) {
   );
 }
 
-export default AddClient
+export default UpdateClient

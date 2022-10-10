@@ -20,7 +20,7 @@ const Financeiro = () => {
   const [handleOpenDeposit, SethandleOpenDeposit] = useState(false)
   const [handleOpenSaque, SethandleOpenSaque] = useState(false)
   const [handleClickOpen, SetHandleClickOpen] = useState(false)
-  const toast = useRef(null);
+  const toast = useRef<any>(null);
  
   useEffect(() => {
 

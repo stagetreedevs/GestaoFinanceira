@@ -11,7 +11,7 @@ const List = () => {
     const [id, setId] = useState<any>()
     const [form, setForm] = useState<any>()
     const [handleClickOpen, SetHandleClickOpen] = useState(false)
-    const toast = useRef(null);
+    const toast = useRef<any>(null);
     async function ref(nome: any, id: any) {
 
         const res = DataService.test('clientes', nome, id)
@@ -19,7 +19,7 @@ const List = () => {
     }
     const showSuccess = () => {
 
-        toast.current?.show({ severity: 'success', summary: 'Success', detail: '', life: 3000 });
+        toast.current.show({ severity: 'success', summary: 'Success', detail: '', life: 3000 });
     }
     useEffect(() => {
         if (text) {
