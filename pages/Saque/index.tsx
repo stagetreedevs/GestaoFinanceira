@@ -12,7 +12,6 @@ import { InputNumber } from 'primereact/inputnumber';
 
 function Deposit(props: any) {
     const [open, setOpen] = useState(true);
-    const [deposit, setDeposit] = useState(0);
     const [up, setUp] = useState(0)
 
 
@@ -23,17 +22,22 @@ function Deposit(props: any) {
     function handleClose(close: boolean = false, e?: any) {
         e.preventDefault();
         if (close) {
+            console.log(form.saldo)
+            if (form.saldo > 1) {
 
-            try {
-                DataService.update(form, "receita",'h0GHQ80BYydasPQy56h8');
-                setForm({
-                    saldo: 0,
-                })
+                try {
+                    DataService.update(form, "receita", 'h0GHQ80BYydasPQy56h8');
+                    setForm({
+                        saldo: 0,
+                    })
+                    props.success()
 
-            } catch (e) {
-                console.log(e);
+
+                } catch (e) {
+                    console.log(e);
+                }
+
             }
-
         }
         setOpen(false);
         props.onClose()
@@ -41,15 +45,15 @@ function Deposit(props: any) {
     };
 
     useEffect(() => {
-        const getSaldo = async() => {
+        const getSaldo = async () => {
             const saldo = (await (DataService.getAll("receita"))).docs.map(res => res.data().saldo)
             await setForm({
-                
+
                 saldo: saldo[0]
             })
         }
         getSaldo()
-      }, [])
+    }, [])
 
     return (
         <>
@@ -70,12 +74,12 @@ function Deposit(props: any) {
                         <Grid container spacing={3}>
                             <Grid item xs={12} md={6}>
 
-                                <InputNumber placeholder="Saque" 
+                                <InputNumber placeholder="Saque"
                                     onValueChange={(e) => {
                                         setForm({
                                             saldo: form.saldo - (e.target.value || 0)
                                         })
-                                    }}/>
+                                    }} />
 
                             </Grid>
                         </Grid>
@@ -91,7 +95,7 @@ function Deposit(props: any) {
                     }>
                         Cancelar
                     </Button>
-                    <Button type='submit' onClick={ async () =>{
+                    <Button type='submit' onClick={async () => {
                         await setUp(1)
 
                         handleClose(true, event)

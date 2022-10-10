@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import Image from 'next/image'
 import style from './style.module.scss'
 import DataService from '../../services/firebase-config'
@@ -9,6 +9,7 @@ import addClient from '../assets/image/addClient.svg'
 import update from '../assets/image/updateUser.svg'
 import remove from '../assets/image/remove.svg'
 import Deposit from "../Deposit"
+import { Toast } from 'primereact/toast';
 import Saque from "../Saque"
 import AddClient from "../AddClient"
 const Financeiro = () => {
@@ -19,7 +20,10 @@ const Financeiro = () => {
   const [handleOpenDeposit, SethandleOpenDeposit] = useState(false)
   const [handleOpenSaque, SethandleOpenSaque] = useState(false)
   const [handleClickOpen, SetHandleClickOpen] = useState(false)
+  const toast = useRef(null);
+ 
   useEffect(() => {
+
 
     async function getClients() {
       const data = (await DataService.getAll("clientes")).docs.map(response => response.data().valor).reduce(
@@ -28,6 +32,7 @@ const Financeiro = () => {
         }, 0
       )
       const saldo = (await (DataService.getAll("receita"))).docs.map(res => res.data().saldo)
+      const juros = (await (DataService.getAll("juros"))).docs.map(res => res.data())[0]
 
       await setSaldo(saldo)
 
@@ -35,11 +40,14 @@ const Financeiro = () => {
 
       await setReceita((await (DataService.getAll("receita"))).docs.map(res => res.data().receita))
     }
-
-
+    
     getClients()
-
+    
   }, [])
+  const showSuccess = () => {
+
+    toast.current?.show({ severity: 'success', summary: 'Success', detail: '', life: 3000 });
+  }
   useEffect(() => {
     const newSaldo: number = saldo[0] + (receita - despesas)
     setSaldo(newSaldo)
@@ -98,6 +106,7 @@ const Financeiro = () => {
           </div>
           <div
             onClick={() => {
+              showSuccess()
             }}
             className={style.buttonClient}
           >
@@ -110,10 +119,12 @@ const Financeiro = () => {
           </div>
         </div>
       </div>
-      {handleOpenDeposit ? <Deposit onClose={() => { SethandleOpenDeposit(false) }} /> : null}
-      {handleClickOpen ? <AddClient onClose={() => { SetHandleClickOpen(false) }} /> : null}
-      {handleOpenSaque ? <Saque onClose={() => { SethandleOpenSaque(false) }} /> : null}
+      {handleOpenDeposit ? <Deposit onClose={() => { SethandleOpenDeposit(false) }} success={ () => showSuccess()}/> : null}
+      {handleClickOpen ? <AddClient onClose={() => { SetHandleClickOpen(false) }} success={ () => showSuccess()}/> : null}
+      {handleOpenSaque ? <Saque onClose={() => { SethandleOpenSaque(false) }} success={ () => showSuccess()}/> : null}
+      
 
+      <Toast ref={toast} />
     </>
   )
 }

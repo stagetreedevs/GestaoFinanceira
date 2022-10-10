@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import DataService from '../../services/firebase-config'
 import { FormGroup, Grid, Input, Slide, ToggleButton } from '@mui/material';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -30,32 +30,40 @@ function AddClient(props: any) {
   function handleClose(close: boolean = false, e?: any) {
 
     e.preventDefault();
-    console.log(e)
     if (close) {
-      if( form.data && form.nome && form.numero && form.valor ){
+      if (form.data && form.nome && form.numero && form.valor) {
 
         try {
-          DataService.add(form, "clientes");
-          setForm({
-            nome: '',
-            numero: '',
-            valor: 1,
-            data: ''
-          })
+          const res = DataService.test("clientes", form, props.id);
+          res(form)
           props.success()
-          
-          
+
+
         }
         catch (e) {
           console.log(e);
         }
-      } 
+      }
 
     }
     setOpen(false);
     props.onClose()
 
   };
+  useEffect(() => {
+    let ref = async () => {
+      const data = (await DataService.getAll("clientes"))
+      let ref = data.docs.map(p => p.id)
+      ref.map(p => console.log(props.id))
+
+      // if(ref == props.id){
+      //   console.log(data.docs.map(res => res.data()))
+      // }
+    }
+    ref()
+    setForm(props.client)
+    console.log(props.client)
+  }, [])
 
   return (
     <>
@@ -77,6 +85,8 @@ function AddClient(props: any) {
               <Grid item xs={12} md={6}>
 
                 <InputText placeholder="Nome"
+                  value={form.nome}
+                  disabled
                   onChange={(e: any) => setForm({
                     ...form,
                     nome: e.target.value
@@ -86,6 +96,7 @@ function AddClient(props: any) {
               <Grid item xs={12} md={6}>
                 {tel ?
                   <InputMask placeholder="Celular"
+                    value={props.client.numero}
                     mask="(85) 99999-9999"
                     onChange={(e) => setForm({
                       ...form,
@@ -93,6 +104,7 @@ function AddClient(props: any) {
                     })} />
                   :
                   <InputMask placeholder="Fixo"
+                    value={props.client.numero}
                     mask="9999-9999"
                     onChange={(e) => setForm({
                       ...form,
@@ -110,13 +122,14 @@ function AddClient(props: any) {
                   }}
                   size='small'
                 >
-                  {tel ? <Image src={cell} width={25} height={25} style={{ backgroundColor: '#fff', margin: 0}}/> : <Image src={fix} width={25} height={25} style={{position: 'absolute'}}/>}
+                  {tel ? <Image src={cell} width={25} height={25} style={{ backgroundColor: '#fff', margin: 0 }} /> : <Image src={fix} width={25} height={25} style={{ position: 'absolute' }} />}
                 </ToggleButton>
 
               </Grid>
               <Grid item xs={12} md={6}>
 
                 <InputNumber placeholder="Valor"
+                  value={form.valor}
                   onChange={(e) => {
                     setForm({
                       ...form,
@@ -130,6 +143,7 @@ function AddClient(props: any) {
               <Grid item xs={12} md={6}>
 
                 <InputMask placeholder="Dia/Mês/Ano"
+                  value={props.client.data}
                   mask="99/99/9999"
                   onChange={(e: any) => setForm({
                     ...form,
@@ -154,7 +168,7 @@ function AddClient(props: any) {
 
             handleClose(true, event)
           }>
-            Concluir
+            Atualizar
           </Button>
         </DialogActions>
       </Dialog>
