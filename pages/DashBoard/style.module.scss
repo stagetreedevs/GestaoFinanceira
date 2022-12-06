@@ -11,6 +11,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
     border-radius: 1rem;
     height: 25%;
     width: 100%;
@@ -18,8 +19,9 @@
     padding: 1rem;
   }
   .info {
-    display: grid;
-    grid-template-columns: auto auto auto;
+    display: flex;
+    width: 85%;
+    justify-content: space-between;
 
     span {
       color: #01d789;

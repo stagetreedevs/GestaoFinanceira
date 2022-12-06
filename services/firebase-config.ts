@@ -35,7 +35,7 @@ class DataService {
     return getDoc(Doc);
   };
 
-  test = (ref: string, doc: any, ids:any) => {
+  UpClient = (ref: string, doc: any, ids:any) => {
     const Doc = collection(db, ref);
     let a: any
     const snapshot = query(Doc);
@@ -50,6 +50,33 @@ class DataService {
               if (document.data().nome === doc.nome) {
                   console.log(id)
                   updateDoc(document.ref, doc);
+                }
+              })
+            });
+        },
+        (error: Error) => {
+          subs.error(error);
+        }
+      );
+    
+    };
+    return obs;
+  };
+  delClient = (ref: string, doc: any, ids:any) => {
+    const Doc = collection(db, ref);
+    let a: any
+    const snapshot = query(Doc);
+    const obs = (subs: any) => {
+      const unsubs = onSnapshot(
+        snapshot,
+        (querySnapshot) => {
+          ids.map((id:any) => {
+            if (id)
+            querySnapshot.docs.forEach((document) => {
+              
+              if (document.data().nome === doc.nome) {
+                  console.log(id)
+                  deleteDoc(document.ref);
                 }
               })
             });

@@ -3,26 +3,36 @@ import DataService from '../../../services/firebase-config'
 import { Chart } from 'primereact/chart';
 
 const Grafico = () => {
-    const [data, setData] = useState<any>([])
+    const [data, setData] = useState<any>({
+        primeiro: '',
+        segundo: '',
+        terceiro: ''
+    })
 
     useEffect(() => {
         async function getData() {
-            const vetor = (await DataService.getAll("clientes")).docs.map(response => response.data().valor)
+            const doc =(await DataService.getAll("clientes")).docs.map(response => response.data())
+            const vetor = doc.map( p => p.valor)
             const vetor2 = vetor.filter((p:any)=> p != Math.max.apply(null,vetor))
             const vetor3 = vetor2.filter((p:any)=> p != Math.max.apply(null,vetor2))
-            setData([Math.max.apply(null,vetor), Math.max.apply(null,vetor2), Math.max.apply(null,vetor3)])
-
+            setData({
+            primeiro: [Math.max.apply(null,vetor), doc.filter( p => p.valor == Math.max.apply(null, vetor))[0].nome],
+            segundo: [Math.max.apply(null,vetor2), doc.filter( p => p.valor == Math.max.apply(null, vetor2))[0].nome], 
+            terceiro: [Math.max.apply(null,vetor3), doc.filter( p => p.valor == Math.max.apply(null, vetor3))[0].nome]
+            })
+            
+            console.log(doc.filter(p => p.valor == Math.max.apply(null,vetor))[0].nome)
         }
         getData()
     }, [])
     
 
     let basicData = {
-        labels: ['#1', '#2', '#3'],
+        labels: [data.primeiro[1] + ':', data.segundo[1] + ':', data.terceiro[1] + ':'],
         datasets: [{
-            label: '',
-            backgroundColor: ['#01d789', '#222A44', '#010326'],
-            data: [data[0], data[1], data[2]]
+            label: ' clientes ',
+            backgroundColor: ['#222A44'],
+            data: [data.primeiro[0], data.segundo[0], data.terceiro[0]]
         }]
     };
 

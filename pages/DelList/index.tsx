@@ -90,7 +90,7 @@ const List = (props:any) => {
                             return (
                                 <tr key={key} onClick={() => {
                                     setForm(client)
-                                    SetHandleClickOpen(true)
+                                    SetHandleClickDel(true)
                                 }}>
 
                                     <td>{client.nome}</td>
@@ -106,7 +106,7 @@ const List = (props:any) => {
             </div>
             <Toast ref={toast} />
 
-            {handleClickOpen ? <UpdateClient onClose={() => { SetHandleClickOpen(false) }} success={() => showSuccess()} id={id}  client={form}/> : null}
+            {handleClickDel ? <DeleteClient onClose={() => { SetHandleClickDel(false) }} success={() => showSuccess()} id={id}  client={form}/> : null}
         </>
     )
 }

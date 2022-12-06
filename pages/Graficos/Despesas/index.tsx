@@ -21,7 +21,7 @@ const Despesas = () => {
         labels: ['Operacional', 'Outros'],
         datasets: [
             {
-                data: [data],
+                data: [data, data],
                 backgroundColor: [
                     "#23F782",
                     "#222A44"

@@ -34,7 +34,7 @@ function UpdateClient(props: any) {
       if (form.data && form.nome && form.numero && form.valor) {
 
         try {
-          const res = DataService.test("clientes", form, props.id);
+          const res = DataService.UpClient("clientes", form, props.id);
           res(form)
           props.success()
 
@@ -64,6 +64,7 @@ function UpdateClient(props: any) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         fullWidth={true}
+        style={{position: 'absolute'}}
       >
         <DialogTitle id="alert-dialog-title" gutterBottom>
           {"Gerenciamento de Clientes"}
