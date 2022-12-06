@@ -37,8 +37,8 @@
 }
 @media screen and (max-width: 720px) {
   .header {
-    display: grid;
-    grid-template-columns: auto auto auto;
+    display: flex;
+    flex-direction: row-reverse;
     position: relative;
     top: 1.5vh;
     width: auto;
