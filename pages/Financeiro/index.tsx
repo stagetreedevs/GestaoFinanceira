@@ -16,6 +16,7 @@ import { Sidebar } from "primereact/sidebar"
 import List from "../ClientList"
 import DelList from "../DelList"
 import { Accordion, AccordionTab } from 'primereact/accordion';
+import Juros from "../Juros"
 const Financeiro = () => {
   const [despesas, setDespesas] = useState<any>([0])
   const [receita, setReceita] = useState<any>([0])
@@ -24,6 +25,7 @@ const Financeiro = () => {
   const [bottom, setBottom] = useState<any>(false)
   const [handleOpenDeposit, SethandleOpenDeposit] = useState(false)
   const [handleOpenSaque, SethandleOpenSaque] = useState(false)
+  const [handleOpenJuros, SethandleOpenJuros] = useState(false)
   const [handleClickOpen, SetHandleClickOpen] = useState(false)
   const [handle, SetHandle] = useState(false)
   const toast = useRef<any>(null);
@@ -144,7 +146,7 @@ const Financeiro = () => {
           </div>
 
           <div
-           onClick={() => alert()}
+           onClick={() => SethandleOpenJuros(true)}
             className={style.buttonClient}
           >
             <div className={style.image}>
@@ -171,6 +173,7 @@ const Financeiro = () => {
       {handleOpenDeposit ? <Deposit onClose={() => { SethandleOpenDeposit(false) }} success={() => showSuccess()} /> : null}
       {handleClickOpen ? <AddClient onClose={() => { SetHandleClickOpen(false) }} success={() => showSuccess()} /> : null}
       {handleOpenSaque ? <Saque onClose={() => { SethandleOpenSaque(false) }} success={() => showSuccess()} /> : null}
+      {handleOpenJuros ? <Juros onClose={() => { SethandleOpenJuros(false) }} success={() => showSuccess()} /> : null}
       <Sidebar visible={bottom} position="bottom" onHide={() => setBottom(false)} className={style.extrato} style={{ height: '75%' }}>
         <div className={style.list}>
           <h1>Selecione o Cliente</h1>
