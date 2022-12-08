@@ -20,8 +20,6 @@ const Grafico = () => {
             segundo: [Math.max.apply(null,vetor2), doc.filter( p => p.valor == Math.max.apply(null, vetor2))[0].nome], 
             terceiro: [Math.max.apply(null,vetor3), doc.filter( p => p.valor == Math.max.apply(null, vetor3))[0].nome]
             })
-            
-            console.log(doc.filter(p => p.valor == Math.max.apply(null,vetor))[0].nome)
         }
         getData()
     }, [])

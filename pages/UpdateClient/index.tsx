@@ -18,13 +18,15 @@ import Image from 'next/image';
 
 function UpdateClient(props: any) {
   const [open, setOpen] = useState(true);
+  const [bottom, setBottom] = useState<any>(false)
   const [tel, setTel] = useState(true);
 
   const [form, setForm] = useState({
     nome: '',
     numero: '111111',
     valor: 1,
-    data: ''
+    data: '',
+    juros: 1
   });
 
   function handleClose(close: boolean = false, e?: any) {
@@ -142,6 +144,19 @@ function UpdateClient(props: any) {
                   })} />
 
               </Grid>
+              {bottom && <Grid item xs={12} md={6}>
+                <InputNumber placeholder="Juros"
+                value={form.juros}
+                  onChange={(e) => {
+                    setForm({
+                      ...form,
+                      juros: e?.value || 0
+                    })
+                    console.log(form)
+                  }
+                  }
+                />
+              </Grid>}
             </Grid>
 
           </FormGroup>
@@ -154,6 +169,13 @@ function UpdateClient(props: any) {
 
           }>
             Cancelar
+          </Button>
+          <Button onClick={() =>
+            setBottom(!bottom)
+
+
+          }>
+            juros
           </Button>
           <Button onClick={() =>
 

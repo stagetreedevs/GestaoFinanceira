@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import DataService from '../../services/firebase-config'
 import { FormGroup, Grid, Input, Slide, ToggleButton } from '@mui/material';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -13,26 +13,39 @@ import { InputNumber } from 'primereact/inputnumber';
 import { InputMask } from 'primereact/inputmask'
 import { InputText } from 'primereact/inputtext';
 import Image from 'next/image';
+import { Sidebar } from 'primereact/sidebar';
+import { async } from '@firebase/util';
 
 // import './ToastDemo.css';
 
 function AddClient(props: any) {
   const [open, setOpen] = useState(true);
   const [tel, setTel] = useState(true);
+  const [juros, setJuros] = useState<any>()
+  const [bottom, setBottom] = useState<any>(false)
 
   const [form, setForm] = useState({
     nome: '',
     numero: '',
     valor: 1,
-    data: ''
+    data: '',
+    juros: 1
   });
 
-  function handleClose(close: boolean = false, e?: any) {
+  useEffect(() => {
+    DataService.getData('porcentagem', 'juros').then(data => setForm({
+      ...form,
+      juros: data.data()?.juros
+    }))
 
+  }, [])
+
+
+  function handleClose(close: boolean = false, e?: any) {
     e.preventDefault();
     console.log(e)
     if (close) {
-      if( form.data && form.nome && form.numero && form.valor ){
+      if (form.data && form.nome && form.numero && form.valor) {
 
         try {
           DataService.add(form, "clientes");
@@ -40,16 +53,17 @@ function AddClient(props: any) {
             nome: '',
             numero: '',
             valor: 1,
-            data: ''
+            data: '',
+            juros: juros
           })
           props.success()
-          
-          
+
+
         }
         catch (e) {
           console.log(e);
         }
-      } 
+      }
 
     }
     setOpen(false);
@@ -110,7 +124,7 @@ function AddClient(props: any) {
                   }}
                   size='small'
                 >
-                  {tel ? <Image src={cell} width={25} height={25} style={{ backgroundColor: '#fff', margin: 0}}/> : <Image src={fix} width={25} height={25} style={{position: 'absolute'}}/>}
+                  {tel ? <Image src={cell} width={25} height={25} style={{ backgroundColor: '#fff', margin: 0 }} /> : <Image src={fix} width={25} height={25} style={{ position: 'absolute' }} />}
                 </ToggleButton>
 
               </Grid>
@@ -137,8 +151,20 @@ function AddClient(props: any) {
                   })} />
 
               </Grid>
-            </Grid>
 
+              {bottom && <Grid item xs={12} md={6}>
+                <InputNumber placeholder="Juros"
+                  onChange={(e) => {
+                    setForm({
+                      ...form,
+                      juros: e?.value || 0
+                    })
+                    console.log(form)
+                  }
+                  }
+                />
+              </Grid>}
+            </Grid>
           </FormGroup>
         </DialogContent>
 
@@ -149,6 +175,13 @@ function AddClient(props: any) {
 
           }>
             Cancelar
+          </Button>
+          <Button onClick={() =>
+            setBottom(!bottom)
+
+
+          }>
+            juros
           </Button>
           <Button onClick={() =>
 
