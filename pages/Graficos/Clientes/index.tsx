@@ -11,19 +11,19 @@ const Grafico = () => {
 
     useEffect(() => {
         async function getData() {
-            const doc =(await DataService.getAll("clientes")).docs.map(response => response.data())
-            const vetor = doc.map( p => p.valor)
-            const vetor2 = vetor.filter((p:any)=> p != Math.max.apply(null,vetor))
-            const vetor3 = vetor2.filter((p:any)=> p != Math.max.apply(null,vetor2))
+            const doc = (await DataService.getAll("clientes")).docs.map(response => response.data())
+            const vetor = doc.map(p => p.valor)
+            const vetor2 = vetor.filter((p: any) => p != Math.max.apply(null, vetor))
+            const vetor3 = vetor2.filter((p: any) => p != Math.max.apply(null, vetor2))
             setData({
-            primeiro: [Math.max.apply(null,vetor), doc.filter( p => p.valor == Math.max.apply(null, vetor))[0].nome],
-            segundo: [Math.max.apply(null,vetor2), doc.filter( p => p.valor == Math.max.apply(null, vetor2))[0].nome], 
-            terceiro: [Math.max.apply(null,vetor3), doc.filter( p => p.valor == Math.max.apply(null, vetor3))[0].nome]
+                primeiro: [Math.max.apply(null, vetor), doc.filter(p => p.valor == Math.max.apply(null, vetor))[0].nome],
+                segundo: [Math.max.apply(null, vetor2), doc.filter(p => p.valor == Math.max.apply(null, vetor2))[0].nome],
+                terceiro: [Math.max.apply(null, vetor3), doc.filter(p => p.valor == Math.max.apply(null, vetor3))[0].nome]
             })
         }
         getData()
     }, [])
-    
+
 
     let basicData = {
         labels: [data.primeiro[1] + ':', data.segundo[1] + ':', data.terceiro[1] + ':'],
@@ -39,19 +39,24 @@ const Grafico = () => {
             indexAxis: 'y',
             reponsive: false,
             maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
             scales: {
                 x: {
                     ticks: {
                         font: {
                             family: "'Poppins', sans-serif",
-                            size: 16
+                            size: 12
                         },
                         color: '#495057'
                     },
                     grid: {
                         font: {
                             family: "'Poppins', sans-serif",
-                            size: 16
+                            size: 12
                         },
                         color: '#ebedef'
                     }
@@ -60,14 +65,14 @@ const Grafico = () => {
                     ticks: {
                         font: {
                             family: "'Poppins', sans-serif",
-                            size: 16
+                            size: 12
                         },
                         color: '#495057'
                     },
                     grid: {
                         font: {
                             family: "'Poppins', sans-serif",
-                            size: 16
+                            size: 12
                         },
                         color: '#ebedef'
                     }
@@ -81,7 +86,7 @@ const Grafico = () => {
 
     return (
         <div onClick={() => console.log(data)}>
-            <Chart type="bar" data={basicData} options={basicOptions} style={{ height: '20vh' }} />
+            <Chart type="bar" data={basicData} options={basicOptions} style={{ height: '18vh' }} />
         </div>
     )
 }

@@ -1,4 +1,5 @@
 import { Head, Html, Main, NextScript, DocumentContext } from "next/document";
+import styles from '../styles/Home.module.css'
 
 const Document = () => {
     

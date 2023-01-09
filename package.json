@@ -15,14 +15,17 @@
     "@material-ui/core": "^4.12.4",
     "@material-ui/pickers": "^3.3.10",
     "@mui/material": "^5.10.3",
+    "@types/nookies": "^2.0.3",
     "chart.js": "^3.9.1",
     "date-fns": "^2.29.3",
     "firebase": "^9.9.3",
     "next": "12.2.5",
+    "nookies": "^2.5.2",
     "primeicons": "^5.0.0",
     "primereact": "^8.5.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-firebase-hooks": "^5.1.1",
     "sass": "^1.54.5"
   },
   "devDependencies": {

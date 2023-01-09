@@ -42,13 +42,7 @@ const GraficoLucro = () => {
             aspectRatio: 1.75,
             plugins: {
                 legend: {
-                    labels: {
-                        font: {
-                            family: "'Poppins', sans-serif",
-                            size: 16
-                        },
-                        color: '#495057'
-                    }
+                    display: false
                 }
             },
             scales: {

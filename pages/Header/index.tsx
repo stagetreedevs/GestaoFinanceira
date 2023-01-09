@@ -13,6 +13,8 @@ import { useState } from 'react'
 import React from 'react'
 import AddClient from '../AddClient'
 import Link from 'next/link';
+import Registro from '../../components/Registro';
+import Atualizar from '../../components/Atualizar';
 
 
 
@@ -20,7 +22,8 @@ const Header = (props: any) => {
 
     const [visible, setVisible] = useState(false)
     
-    const [handleClickOpen, SetHandleClickOpen] = useState(false)
+    const [handleRegistro, SetRegistro] = useState(false)
+    const [handleAtualizar, SetAtualizar] = useState(false)
     const [handleClickDel, SetHandleClickDel] = useState(false)
 
 
@@ -50,7 +53,7 @@ const Header = (props: any) => {
 
                     <div
                         onClick={() => {
-                            SetHandleClickOpen(true)
+                            SetRegistro(true)
                             setVisible(false)
                         }}
                         className={styles.button}
@@ -78,7 +81,7 @@ const Header = (props: any) => {
                     </div>
                     <div
                         onClick={() => {
-                            SetHandleClickOpen(true)
+                            SetAtualizar(true)
                             setVisible(false)
                         }}
                         className={styles.button}
@@ -93,7 +96,8 @@ const Header = (props: any) => {
                 </div>
             </Sidebar>
             
-            {handleClickOpen ? <AddClient onClose={() => { SetHandleClickOpen(false) }} /> : null}
+            {handleRegistro ? <Registro onClose={() => { SetRegistro(false) }} /> : null}
+            {handleAtualizar ? <Atualizar onClose={() => { SetAtualizar(false) }} /> : null}
         </>
     )
 }

@@ -147,10 +147,12 @@
       height: auto;
       width: 100%;
       transition: 0.3s;
+      cursor: pointer;
       :hover {
         background-color: #222a442c;
       }
       .buttonClient {
+        cursor: pointer;
         display: flex;
         align-items: center;
         border: #222a4418 solid 1px;

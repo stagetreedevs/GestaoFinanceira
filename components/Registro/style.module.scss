@@ -1,0 +1,39 @@
+.Login {
+  background-color: #17103f;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .content {
+    border-radius: 2rem;
+    padding: 1rem;
+    background-color: #e9e8e8;
+    width: 50vw;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-bottom: 1.5rem;
+    p{
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #17103f;
+    }
+    .inputs{
+        display: grid;
+        gap: 1.5rem;
+        width: 100%;
+        justify-content: center;
+        input{
+          background: none;
+          border: #22185e solid 2px;
+          border-radius: 1rem;
+          width: 30vw;
+          height: 2.5rem;
+          padding: .5rem;
+        }
+    }
+  }
+}
